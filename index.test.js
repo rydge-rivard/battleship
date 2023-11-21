@@ -1,4 +1,4 @@
-import { Ship } from "./index.js";
+import { Ship, Gameboard } from "./index.js";
 
 test("create Ship obj from constructor", () => {
   expect(Ship(5, 0, false)).toMatchObject({
@@ -39,5 +39,20 @@ test("is the ship sunk when not sunk", () => {
     length: 5,
     hits: 4,
     sunk: false,
+  });
+});
+
+test("create 10x10 gameboard", () => {
+  expect(Gameboard()).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   });
 });
