@@ -138,3 +138,51 @@ test("place ship horizontal beside other ship", () => {
     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   });
 });
+
+test("place ship vertically on row 1 x position 0", () => {
+  const board = Gameboard();
+  expect(board.placeShipV(Ship(5, 0, false), 0, 0)).toMatchObject({
+    row1: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("place ship vertically starting on row 3 x position 0", () => {
+  const board = Gameboard();
+  expect(board.placeShipV(Ship(5, 0, false), 2, 0)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("place ship vertically starting on row 3 x position 5", () => {
+  const board = Gameboard();
+  expect(board.placeShipV(Ship(5, 0, false), 2, 5)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    row4: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});

@@ -62,6 +62,24 @@ function Gameboard(
     }
   }
 
+  function placeShipV(ship, startRow, xPosition) {
+    let j = 100;
+    const boardKeys = Object.keys(this);
+    const firstRow = boardKeys[startRow];
+    for (const key in this) {
+      if (key == firstRow) {
+        j = 0;
+        this[key][xPosition] = 1;
+        j++;
+      } else if (j < ship.length) {
+        this[key][xPosition] = 1;
+        j++;
+      }
+    }
+    // console.log(this);
+    return this;
+  }
+
   return {
     row1,
     row2,
@@ -74,5 +92,6 @@ function Gameboard(
     row9,
     row10,
     placeShipH,
+    placeShipV,
   };
 }
