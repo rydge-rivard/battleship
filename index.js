@@ -40,5 +40,25 @@ function Gameboard(
   row9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   row10 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  return { row1, row2, row3, row4, row5, row6, row7, row8, row9, row10 };
+  function placeShipH(ship, row, j) {
+    for (let i = 0; i < ship.length; i++) {
+      row[j] = 1;
+      j++;
+    }
+    return this;
+  }
+
+  return {
+    row1,
+    row2,
+    row3,
+    row4,
+    row5,
+    row6,
+    row7,
+    row8,
+    row9,
+    row10,
+    placeShipH,
+  };
 }
