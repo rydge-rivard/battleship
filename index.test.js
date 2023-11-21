@@ -89,17 +89,52 @@ test("place ship horizontal on row from third array position", () => {
   });
 });
 
-// test("place ship vertically", () => {
-//   expect(Gameboard().placeShip("v", Ship(5, 0, false))).toMatchObject({
-//     row1: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row2: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   });
-// });
+test("prevent ship horizontal placement while too long for board", () => {
+  const board = Gameboard();
+  expect(board.placeShipH(Ship(5, 0, false), board.row5, 7)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("prevent ship horizontal placement if space is already taken", () => {
+  const board = Gameboard();
+  board.placeShipH(Ship(5, 0, false), board.row3, 0);
+  expect(board.placeShipH(Ship(5, 0, false), board.row3, 3)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+    row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("place ship horizontal beside other ship", () => {
+  const board = Gameboard();
+  board.placeShipH(Ship(5, 0, false), board.row3, 0);
+  expect(board.placeShipH(Ship(2, 0, false), board.row3, 6)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 1, 1, 1, 1, 0, 1, 1, 0, 0],
+    row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});

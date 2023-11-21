@@ -40,12 +40,26 @@ function Gameboard(
   row9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   row10 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  function placeShipH(ship, row, j) {
-    for (let i = 0; i < ship.length; i++) {
-      row[j] = 1;
-      j++;
+  function placeShipH(ship, row, xPosition) {
+    if (row.length - xPosition < ship.length) {
+      return this;
+    } else if (checkShips(ship, row, xPosition)) {
+      return this;
+    } else {
+      for (let i = 0; i < ship.length; i++) {
+        row[xPosition] = 1;
+        xPosition++;
+      }
+      return this;
     }
-    return this;
+  }
+
+  function checkShips(ship, row, xPosition) {
+    for (let i = 0; i < ship.length; i++) {
+      if (row[xPosition] === 0) {
+        return false;
+      } else return true;
+    }
   }
 
   return {
