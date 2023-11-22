@@ -186,3 +186,53 @@ test("place ship vertically starting on row 3 x position 5", () => {
     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   });
 });
+
+test("prevent ship vertical placement while too long for board", () => {
+  const board = Gameboard();
+  expect(board.placeShipV(Ship(5, 0, false), 7, 2)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("prevent ship vertical placement if space is already taken", () => {
+  const board = Gameboard();
+  board.placeShipV(Ship(5, 0, false), 1, 0);
+  expect(board.placeShipV(Ship(5, 0, false), 4, 0)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("place ship vertically beside other ship", () => {
+  const board = Gameboard();
+  board.placeShipV(Ship(5, 0, false), 1, 0);
+  expect(board.placeShipV(Ship(2, 0, false), 7, 0)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});

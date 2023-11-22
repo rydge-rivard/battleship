@@ -43,7 +43,7 @@ function Gameboard(
   function placeShipH(ship, row, xPosition) {
     if (row.length - xPosition < ship.length) {
       return this;
-    } else if (checkShips(ship, row, xPosition)) {
+    } else if (checkShipsH(ship, row, xPosition)) {
       return this;
     } else {
       for (let i = 0; i < ship.length; i++) {
@@ -54,7 +54,7 @@ function Gameboard(
     }
   }
 
-  function checkShips(ship, row, xPosition) {
+  function checkShipsH(ship, row, xPosition) {
     for (let i = 0; i < ship.length; i++) {
       if (row[xPosition] === 0) {
         return false;
@@ -64,20 +64,40 @@ function Gameboard(
 
   function placeShipV(ship, startRow, xPosition) {
     let j = 100;
-    const boardKeys = Object.keys(this);
-    const firstRow = boardKeys[startRow];
-    for (const key in this) {
-      if (key == firstRow) {
+    const firstRow = Object.keys(this)[startRow];
+    if (startRow + ship.length > 10) {
+      return this;
+    } else if (checkShipsV(ship, xPosition, this, j, firstRow)) {
+      return this;
+    } else {
+      for (const key in this) {
+        if (key == firstRow) {
+          j = 0;
+          this[key][xPosition] = 1;
+          j++;
+        } else if (j < ship.length) {
+          this[key][xPosition] = 1;
+          j++;
+        }
+      }
+      return this;
+    }
+  }
+
+  function checkShipsV(ship, xPosition, board, j, firstRow) {
+    let conflict = false;
+    for (const key in board) {
+      if (key == firstRow && board[key][xPosition] !== 0) {
         j = 0;
-        this[key][xPosition] = 1;
-        j++;
-      } else if (j < ship.length) {
-        this[key][xPosition] = 1;
-        j++;
+        conflict = true;
+        break;
+      } else if (j < ship.length && board[key][xPosition] !== 0) {
+        conflict = true;
+        break;
+      } else {
       }
     }
-    // console.log(this);
-    return this;
+    return conflict;
   }
 
   return {
