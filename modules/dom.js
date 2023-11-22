@@ -37,7 +37,7 @@ const modDOM = (function () {
         for (let i = 0; i < computer.board[row].length; i++) {
           const div = addAttackClass(computer.board[row][i]);
           board2.appendChild(div);
-          bindEvents(div, row, i, player, computer);
+          bindEvents(div, row, i, player, computer, computer.board[row][i]);
         }
     }
   }
@@ -54,10 +54,12 @@ const modDOM = (function () {
     return div;
   }
 
-  function bindEvents(element, row, x, player, computer) {
-    element.addEventListener("click", () =>
-      game.attackComputer(row, x, player, computer)
-    );
+  function bindEvents(element, row, x, player, computer, value) {
+    if (value === 0 || typeof value === "object") {
+      element.addEventListener("click", () =>
+        game.attackComputer(row, x, player, computer)
+      );
+    }
   }
 
   function resetBoard(cssClass) {
