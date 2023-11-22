@@ -7,15 +7,31 @@
   box-sizing: border-box;
 }
 
-div.board-1 {
+.wrapper {
   display: grid;
-  grid-template-columns: 33px 33px 33px 33px 33px 33px 33px 33px 33px 33px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.wrapper div {
+  align-self: center;
+  justify-self: center;
+}
+
+div.board-1,
+div.board-2 {
+  display: grid;
+  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
   justify-items: center;
 }
 
-.board-1 div {
-  height: 33px;
+.board-1 div,
+.board-2 div {
+  height: 30px;
   width: 100%;
-  /* padding: 6px 0; */
   border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
 }
