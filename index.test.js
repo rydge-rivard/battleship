@@ -269,28 +269,69 @@ test("receiveAttack determines whether or not the attack hit a ship", () => {
   });
 });
 
-test("receiveAttack determines whether or not the attack hit a ship", () => {
-  expect({
+test("receiveAttack determines if attack missed a ship", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 0, false);
+  board.placeShipV(ship5, 2, 0);
+  expect(board.receiveAttack(0, board.row2)).toMatchObject({
     row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row2: ["x", 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row6: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row8: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row9: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: ["o", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  }).toMatchObject({
+  });
+});
+
+test("receiveAttack determines if attack hit a ship", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 0, false);
+  board.placeShipV(ship5, 2, 0);
+  expect(board.receiveAttack(0, board.row3)).toMatchObject({
     row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row2: ["x", 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row3: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row4: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row5: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row6: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row8: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    row9: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: ["x", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  });
+});
+
+test("receiveAttack determines if attack recorded hit on the ship", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 0, false);
+  board.placeShipV(ship5, 2, 0);
+  board.receiveAttack(0, board.row3);
+  expect(ship5).toMatchObject({
+    length: 5,
+    hits: 1,
+    sunk: false,
+  });
+});
+
+test("receiveAttack determines if coords have already been attacked", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 0, false);
+  board.placeShipV(ship5, 2, 0);
+  board.receiveAttack(0, board.row3);
+  expect(board.receiveAttack(0, board.row3)).toMatchObject({
+    row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row3: ["x", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row4: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row5: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row6: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row7: [ship5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   });
 });

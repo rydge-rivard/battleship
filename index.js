@@ -100,6 +100,20 @@ function Gameboard(
     return conflict;
   }
 
+  function receiveAttack(x, row) {
+    if (row[x] === 0) {
+      row[x] = "o";
+      return this;
+    } else if (typeof row[x] === "object") {
+      const ship = row[x];
+      ship.hit();
+      row[x] = "x";
+      return this;
+    } else {
+      return this;
+    }
+  }
+
   return {
     row1,
     row2,
@@ -113,5 +127,6 @@ function Gameboard(
     row10,
     placeShipH,
     placeShipV,
+    receiveAttack,
   };
 }
