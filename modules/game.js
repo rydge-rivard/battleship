@@ -135,10 +135,12 @@ function Gameboard(
   function gameOver() {
     let isGameOver = true;
     this.ships.forEach((ship) => {
+      ship.isSunk();
       if (ship.sunk === false) {
         isGameOver = false;
       }
     });
+    console.log(this);
     return isGameOver;
   }
 

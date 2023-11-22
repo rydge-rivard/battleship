@@ -1,9 +1,13 @@
 export { modDOM };
+import { game } from "./controller.js";
 
 const modDOM = (function () {
   const body = document.querySelector("body");
   const board1 = body.querySelector(".board-1");
   const board2 = body.querySelector(".board-2");
+
+  printBoard(game.player1);
+  printComputerBoard(game.player2, game.player1);
 
   function printBoard(player) {
     for (const row in player.board) {
@@ -52,16 +56,8 @@ const modDOM = (function () {
 
   function bindEvents(element, row, x, player, computer) {
     element.addEventListener("click", () =>
-      attackComputer(row, x, player, computer)
+      game.attackComputer(row, x, player, computer)
     );
-  }
-
-  function attackComputer(row, x, player, computer) {
-    player.attack(computer, row, x);
-    resetBoard(".board-2 div");
-    resetBoard(".board-1 div");
-    printBoard(player);
-    printComputerBoard(computer, player);
   }
 
   function resetBoard(cssClass) {
@@ -71,5 +67,5 @@ const modDOM = (function () {
     });
   }
 
-  return { printBoard, printComputerBoard };
+  return { printBoard, printComputerBoard, resetBoard };
 })();
