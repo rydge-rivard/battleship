@@ -5,32 +5,40 @@ const modDOM = (function () {
   const board1 = body.querySelector(".board-1");
   const board2 = body.querySelector(".board-2");
 
-  function test() {
-    return console.log("test");
-  }
-
-  function printBoard(board, location) {
+  function printBoard(board) {
     for (const row in board) {
       if (typeof board[row] === "object" && row.includes("row"))
         board[row].forEach((square) => {
-          const div = document.createElement("div");
-          location.appendChild(div);
+          const div = addShipClass(square);
+          board1.appendChild(div);
         });
     }
+  }
+
+  function addShipClass(value) {
+    const div = document.createElement("div");
+    if (typeof value === "object") {
+      div.classList.add("ship");
+    } else if (value === "o") {
+      div.classList.add("miss");
+    } else if (value === "x") {
+      div.classList.add("hit");
+    }
+    return div;
   }
 
   function printComputerBoard(computer, player) {
     for (const row in computer.board) {
       if (typeof computer.board[row] === "object" && row.includes("row"))
         for (let i = 0; i < computer.board[row].length; i++) {
-          const div = addClass(computer.board[row][i]);
+          const div = addAttackClass(computer.board[row][i]);
           board2.appendChild(div);
           bindEvents(div, row, i, player, computer);
         }
     }
   }
 
-  function addClass(value) {
+  function addAttackClass(value) {
     const div = document.createElement("div");
     if (value === "o") {
       div.classList.add("miss");
@@ -50,16 +58,16 @@ const modDOM = (function () {
 
   function attackComputer(row, x, player, computer) {
     player.attack(computer, row, x);
-    updateComputerBoard();
+    resetComputerBoard();
     printComputerBoard(computer, player);
   }
 
-  function updateComputerBoard() {
+  function resetComputerBoard() {
     const board = document.querySelectorAll(".board-2 div");
     board.forEach((element) => {
       element.remove();
     });
   }
 
-  return { test, printBoard, printComputerBoard };
+  return { printBoard, printComputerBoard };
 })();

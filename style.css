@@ -48,3 +48,7 @@ div.miss {
 div.open:hover {
   background-color: rgba(29, 123, 29, 0.618);
 }
+
+div.ship {
+  background-color: rgba(11, 11, 36, 0.626);
+}
