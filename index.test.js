@@ -1,4 +1,4 @@
-import { Ship, Gameboard, Player } from "./index.js";
+import { Ship, Gameboard, Player } from "./modules/game.js";
 
 test("create Ship obj from constructor", () => {
   expect(Ship(5, 0, false)).toMatchObject({
@@ -7,8 +7,6 @@ test("create Ship obj from constructor", () => {
     sunk: false,
   });
 });
-
-// const ship = Ship(5, 0, false);
 
 test("hit function increments hit value by 1", () => {
   expect(Ship(5, 0, false).hit()).toMatchObject({
@@ -394,7 +392,7 @@ test("attack opponents board and then switch turns", () => {
   });
 });
 
-test.only("computer attacks random coordinate and then switch turns", () => {
+test("computer attacks random coordinate and then switch turns", () => {
   const player1 = Player("Rydge", Gameboard(), false);
   const player2 = Player("Computer", Gameboard(), true);
   expect(player2.attack(player1)).toMatchObject({
