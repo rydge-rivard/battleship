@@ -47,7 +47,7 @@ function Gameboard(
       return this;
     } else {
       for (let i = 0; i < ship.length; i++) {
-        row[xPosition] = 1;
+        row[xPosition] = ship;
         xPosition++;
       }
       return this;
@@ -73,10 +73,10 @@ function Gameboard(
       for (const key in this) {
         if (key == firstRow) {
           j = 0;
-          this[key][xPosition] = 1;
+          this[key][xPosition] = ship;
           j++;
         } else if (j < ship.length) {
-          this[key][xPosition] = 1;
+          this[key][xPosition] = ship;
           j++;
         }
       }
