@@ -30,8 +30,21 @@ div.board-2 {
   height: 30px;
   width: 100%;
   border: 1px solid black;
+  background-color: rgba(70, 70, 241, 0.828);
 }
 
 h1 {
   text-align: center;
+}
+
+div.hit {
+  background-color: rgb(232, 61, 61);
+}
+
+div.miss {
+  background-color: rgba(70, 70, 241, 0.292);
+}
+
+div.open:hover {
+  background-color: rgba(29, 123, 29, 0.618);
 }

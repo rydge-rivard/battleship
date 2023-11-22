@@ -19,4 +19,4 @@ console.log(player1.board);
 console.log(player2.board);
 
 modDOM.printBoard(player1.board, board1);
-modDOM.printComputerBoard(player2.board, board2);
+modDOM.printComputerBoard(player2, player1);
