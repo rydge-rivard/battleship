@@ -1,4 +1,4 @@
-export { Ship, Gameboard };
+export { Ship, Gameboard, Player };
 
 function Ship(length, hits, sunk) {
   function hit() {
@@ -105,6 +105,7 @@ function Gameboard(
   }
 
   function receiveAttack(x, row) {
+    row = checkAttackRow(this, row);
     if (row[x] === 0) {
       row[x] = "o";
       return this;
@@ -116,6 +117,19 @@ function Gameboard(
     } else {
       return this;
     }
+  }
+
+  function checkAttackRow(board, row) {
+    if (typeof row === "string") {
+      let objectKey;
+      for (const key in board) {
+        if (key == row) {
+          objectKey = board[key];
+        }
+      }
+      return objectKey;
+    }
+    return row;
   }
 
   function gameOver() {
@@ -145,4 +159,26 @@ function Gameboard(
     receiveAttack,
     gameOver,
   };
+}
+
+function Player(name, board, isTurn) {
+  function attack(opponent, row, x) {
+    if (this.name === "Computer") {
+      x = Math.floor(Math.random() * 10);
+      row = randomRow(opponent.board);
+      opponent.board.receiveAttack(x, row);
+    } else {
+      opponent.board.receiveAttack(x, row);
+    }
+    this.isTurn = false;
+    opponent.isTurn = true;
+    return opponent;
+  }
+
+  function randomRow(board) {
+    let keys = Object.keys(board);
+    return keys[(10 * Math.random()) << 0];
+  }
+
+  return { name, board, isTurn, attack };
 }

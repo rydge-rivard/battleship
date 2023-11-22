@@ -1,4 +1,4 @@
-import { Ship, Gameboard } from "./index.js";
+import { Ship, Gameboard, Player } from "./index.js";
 
 test("create Ship obj from constructor", () => {
   expect(Ship(5, 0, false)).toMatchObject({
@@ -352,4 +352,53 @@ test("determine if all ships are sunk on board", () => {
   board.placeShipH(ship5, board.row3, 0);
   board.placeShipH(ship2, board.row4, 2);
   expect(board.gameOver()).toBe(true);
+});
+
+test("create player with board", () => {
+  const board = Gameboard();
+  expect(Player("Rydge", board)).toMatchObject({
+    name: "Rydge",
+    board: {
+      row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+  });
+});
+
+test("attack opponents board and then switch turns", () => {
+  const player1 = Player("Rydge", Gameboard(), true);
+  const player2 = Player("Computer", Gameboard(), false);
+  expect(player1.attack(player2, player2.board.row2, 0)).toMatchObject({
+    name: "Computer",
+    isTurn: true,
+    board: {
+      row1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row2: ["o", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+  });
+});
+
+test.only("computer attacks random coordinate and then switch turns", () => {
+  const player1 = Player("Rydge", Gameboard(), false);
+  const player2 = Player("Computer", Gameboard(), true);
+  expect(player2.attack(player1)).toMatchObject({
+    name: "Rydge",
+    isTurn: true,
+  });
 });
