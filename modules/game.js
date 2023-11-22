@@ -182,3 +182,5 @@ function Player(name, board, isTurn) {
 
   return { name, board, isTurn, attack };
 }
+
+function GameController() {}
