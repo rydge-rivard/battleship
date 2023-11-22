@@ -15,5 +15,5 @@ player1.board.placeShipH(ship2, player1.board.row4, 2);
 player2.board.placeShipH(ship5, player2.board.row10, 4);
 player2.board.placeShipH(ship2, player2.board.row6, 0);
 
-modDOM.printBoard(player1.board);
+modDOM.printBoard(player1);
 modDOM.printComputerBoard(player2, player1);

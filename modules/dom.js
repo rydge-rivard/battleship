@@ -5,10 +5,10 @@ const modDOM = (function () {
   const board1 = body.querySelector(".board-1");
   const board2 = body.querySelector(".board-2");
 
-  function printBoard(board) {
-    for (const row in board) {
-      if (typeof board[row] === "object" && row.includes("row"))
-        board[row].forEach((square) => {
+  function printBoard(player) {
+    for (const row in player.board) {
+      if (typeof player.board[row] === "object" && row.includes("row"))
+        player.board[row].forEach((square) => {
           const div = addShipClass(square);
           board1.appendChild(div);
         });
@@ -58,12 +58,14 @@ const modDOM = (function () {
 
   function attackComputer(row, x, player, computer) {
     player.attack(computer, row, x);
-    resetComputerBoard();
+    resetBoard(".board-2 div");
+    resetBoard(".board-1 div");
+    printBoard(player);
     printComputerBoard(computer, player);
   }
 
-  function resetComputerBoard() {
-    const board = document.querySelectorAll(".board-2 div");
+  function resetBoard(cssClass) {
+    const board = document.querySelectorAll(cssClass);
     board.forEach((element) => {
       element.remove();
     });

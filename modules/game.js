@@ -169,6 +169,7 @@ function Player(name, board, isTurn) {
       opponent.board.receiveAttack(x, row);
     } else {
       opponent.board.receiveAttack(x, row);
+      opponent.attack(this);
     }
     this.isTurn = false;
     opponent.isTurn = true;
