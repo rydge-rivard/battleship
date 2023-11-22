@@ -335,3 +335,21 @@ test("receiveAttack determines if coords have already been attacked", () => {
     row10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   });
 });
+
+test("add all ships to board array", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 0, false);
+  const ship2 = Ship(2, 0, false);
+  board.placeShipH(ship5, board.row3, 0);
+  board.placeShipH(ship2, board.row4, 2);
+  expect(board).toMatchObject({ ships: [ship5, ship2] });
+});
+
+test("determine if all ships are sunk on board", () => {
+  const board = Gameboard();
+  const ship5 = Ship(5, 5, true);
+  const ship2 = Ship(2, 2, true);
+  board.placeShipH(ship5, board.row3, 0);
+  board.placeShipH(ship2, board.row4, 2);
+  expect(board.gameOver()).toBe(true);
+});

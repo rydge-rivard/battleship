@@ -27,7 +27,8 @@ function Gameboard(
   row7,
   row8,
   row9,
-  row10
+  row10,
+  ships
 ) {
   row1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   row2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -39,6 +40,7 @@ function Gameboard(
   row8 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   row9 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   row10 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  ships = [];
 
   function placeShipH(ship, row, xPosition) {
     if (row.length - xPosition < ship.length) {
@@ -50,6 +52,7 @@ function Gameboard(
         row[xPosition] = ship;
         xPosition++;
       }
+      this.ships.push(ship);
       return this;
     }
   }
@@ -80,6 +83,7 @@ function Gameboard(
           j++;
         }
       }
+      this.ships.push(ship);
       return this;
     }
   }
@@ -114,6 +118,16 @@ function Gameboard(
     }
   }
 
+  function gameOver() {
+    let isGameOver = true;
+    this.ships.forEach((ship) => {
+      if (ship.sunk === false) {
+        isGameOver = false;
+      }
+    });
+    return isGameOver;
+  }
+
   return {
     row1,
     row2,
@@ -125,8 +139,10 @@ function Gameboard(
     row8,
     row9,
     row10,
+    ships,
     placeShipH,
     placeShipV,
     receiveAttack,
+    gameOver,
   };
 }
