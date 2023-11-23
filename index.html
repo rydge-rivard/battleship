@@ -15,12 +15,57 @@
       <div>Enemy Waters</div>
       <div class="board-2"></div>
       <dialog>
-        <legend></legend>
-        <div class="modal-board"></div>
-        <div>
-          <button value="cancel" id="cancel" formmethod="dialog">Cancel</button>
-          <button id="confirm" value="default">Confirm</button>
-        </div>
+        <form action="">
+          <fieldset>
+            <legend>Place Your Battleships</legend>
+            <div class="modal-board"></div>
+            <ul>
+              <li>
+                <label for="row">Row</label>
+                <select id="row" name="row">
+                  <option value="row1">Row 1</option>
+                  <option value="row2">Row 2</option>
+                  <option value="row3">Row 3</option>
+                  <option value="row4">Row 4</option>
+                  <option value="row5">Row 5</option>
+                  <option value="row6">Row 6</option>
+                  <option value="row7">Row 7</option>
+                  <option value="row8">Row 8</option>
+                  <option value="row9">Row 9</option>
+                  <option value="row10">Row 10</option>
+                </select>
+              </li>
+              <li>
+                <label for="column">Column</label>
+                <select id="column" name="column">
+                  <option value="0">Column 1</option>
+                  <option value="1">Column 2</option>
+                  <option value="2">Column 3</option>
+                  <option value="3">Column 4</option>
+                  <option value="4">Column 5</option>
+                  <option value="5">Column 6</option>
+                  <option value="6">Column 7</option>
+                  <option value="7">Column 8</option>
+                  <option value="8">Column 9</option>
+                  <option value="9">Column 10</option>
+                </select>
+              </li>
+              <li>
+                <label for="dir">Direction</label>
+                <select id="dir" name="dir">
+                  <option value="h">Horizontal</option>
+                  <option value="v">Vertical</option>
+                </select>
+              </li>
+            </ul>
+          </fieldset>
+          <div>
+            <button value="cancel" id="cancel" formmethod="dialog">
+              Cancel
+            </button>
+            <button id="confirm" value="default">Confirm</button>
+          </div>
+        </form>
       </dialog>
     </div>
   </body>

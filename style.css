@@ -5,6 +5,7 @@
   padding: 0;
   font-family: "Rubik", sans-serif;
   box-sizing: border-box;
+  list-style: none;
 }
 
 .wrapper {
@@ -62,9 +63,9 @@ dialog {
   /* position: absolute;
   top: 18%;
   left: 40%; */
-  padding: 30px 60px 20px;
-  width: 400px;
-  height: 430px;
+  padding: 30px 20px 20px;
+  width: 364px;
+  height: 590px;
   background-color: rgba(255, 255, 255, 0.943);
 }
 
@@ -84,4 +85,32 @@ button {
 
 button:hover {
   background-color: rgba(0, 0, 0, 0.667);
+}
+
+fieldset {
+  padding: 12px;
+  border: none;
+  /* display: grid;
+  grid-auto-columns: min-content; */
+}
+
+select {
+  box-sizing: border-box;
+  padding: 4px 8px;
+  width: 220px;
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  font-family: "Raleway", sans-serif;
+}
+
+legend {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
