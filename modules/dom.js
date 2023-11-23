@@ -1,4 +1,5 @@
 export { modDOM };
+import { modModal } from "./modal.js";
 import { game } from "./controller.js";
 
 const modDOM = (function () {
@@ -8,13 +9,14 @@ const modDOM = (function () {
 
   printBoard(game.player1);
   printComputerBoard(game.player2, game.player1);
+  printBoard(game.player1, modModal.modalCont);
 
-  function printBoard(player) {
+  function printBoard(player, location = board1) {
     for (const row in player.board) {
       if (typeof player.board[row] === "object" && row.includes("row"))
         player.board[row].forEach((square) => {
           const div = addShipClass(square);
-          board1.appendChild(div);
+          location.appendChild(div);
         });
     }
   }

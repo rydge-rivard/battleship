@@ -19,14 +19,16 @@
 }
 
 div.board-1,
-div.board-2 {
+div.board-2,
+div.modal-board {
   display: grid;
   grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
   justify-items: center;
 }
 
 .board-1 div,
-.board-2 div {
+.board-2 div,
+.modal-board div {
   height: 30px;
   width: 100%;
   border: 1px solid black;
@@ -57,16 +59,29 @@ dialog {
   box-shadow: 5px 5px 10px -10px;
   border: none;
   border-radius: 9px;
-  position: absolute;
+  /* position: absolute;
   top: 18%;
-  left: 40%;
+  left: 40%; */
   padding: 30px 60px 20px;
-  width: 350px;
-  height: 400px;
+  width: 400px;
+  height: 430px;
   background-color: rgba(255, 255, 255, 0.943);
 }
 
 dialog div {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 24px 0 0 0;
+}
+
+button {
+  border-radius: 24px;
+  padding: 8px 18px;
+  border: none;
+  background-color: black;
+  color: white;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.667);
 }

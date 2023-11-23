@@ -1,10 +1,10 @@
 import { Ship, Gameboard, Player } from "./game.js";
 import { modDOM } from "./dom.js";
-import { modalMOD } from "./modal.js";
+import { modModal } from "./modal.js";
 export { game };
 
 const game = (function () {
-  modalMOD.showModal();
+  modModal.showModal();
 
   const player1 = Player("Rydge", Gameboard(), false);
   const player2 = Player("Computer", Gameboard(), true);
@@ -43,6 +43,5 @@ const game = (function () {
     modDOM.printComputerBoard(computer, player);
     checkWinner();
   }
-
   return { checkWinner, attackComputer, player1, player2 };
 })();
