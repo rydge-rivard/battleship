@@ -1,8 +1,11 @@
 import { Ship, Gameboard, Player } from "./game.js";
 import { modDOM } from "./dom.js";
+import { modalMOD } from "./modal.js";
 export { game };
 
 const game = (function () {
+  modalMOD.showModal();
+
   const player1 = Player("Rydge", Gameboard(), false);
   const player2 = Player("Computer", Gameboard(), true);
 
