@@ -8,18 +8,16 @@ const game = (function () {
   const player2 = Player("Computer", Gameboard(), true);
 
   const ship5a = Ship(5, 0, false);
-  const ship2a = Ship(2, 0, false);
+  const ship3a = Ship(3, 0, false);
 
   const ship5b = Ship(5, 0, false);
   const ship2b = Ship(2, 0, false);
   const ship3b = Ship(3, 0, false);
   const ship4b = Ship(4, 0, false);
-  const ship3bb = Ship(3, 0, false);
 
-  player1.board.placeShipH(ship5a, player1.board.row3, 0);
-  player1.board.placeShipH(ship2a, player1.board.row4, 2);
+  player1.board.placeShipH(ship5a, player1.board.row7, 5);
+  player1.board.placeShipH(ship3a, player1.board.row9, 3);
 
-  player2.board.placeShipH(ship3bb, player2.board.row5, 0);
   player2.board.placeShipH(ship5b, player2.board.row1, 3);
   player2.board.placeShipH(ship2b, player2.board.row2, 4);
   player2.board.placeShipH(ship3b, player2.board.row4, 6);

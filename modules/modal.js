@@ -23,7 +23,7 @@ const modModal = (function () {
     if (direction === "h") {
       game.player1.board.placeShipH(Ship(5, 0, false), row, column);
     } else {
-      game.player1.board.placeShipV(Ship(2, 0, false), row, column);
+      game.player1.board.placeShipV(Ship(4, 0, false), row, column);
       console.log(game.player1.board);
     }
     dialog.close();
