@@ -104,8 +104,8 @@ function Gameboard(
     return conflict;
   }
 
-  function receiveAttack(x, row) {
-    row = checkAttackRow(this, row);
+  function receiveAttack(x, row, player) {
+    row = formatRandomRow(this, row);
     if (row[x] === 0) {
       row[x] = "o";
       return this;
@@ -115,11 +115,13 @@ function Gameboard(
       row[x] = "x";
       return this;
     } else {
-      return this;
+      let xAttempt2 = Math.floor(Math.random() * 10);
+      let rowAttempt2 = player.randomRow(player.board);
+      player.board.receiveAttack(xAttempt2, rowAttempt2, player);
     }
   }
 
-  function checkAttackRow(board, row) {
+  function formatRandomRow(board, row) {
     if (typeof row === "string") {
       let objectKey;
       for (const key in board) {
@@ -168,7 +170,7 @@ function Player(name, board, isTurn) {
     if (this.name === "Computer") {
       x = Math.floor(Math.random() * 10);
       row = randomRow(opponent.board);
-      opponent.board.receiveAttack(x, row);
+      opponent.board.receiveAttack(x, row, opponent);
     } else {
       opponent.board.receiveAttack(x, row);
       opponent.attack(this);
@@ -183,7 +185,7 @@ function Player(name, board, isTurn) {
     return keys[(10 * Math.random()) << 0];
   }
 
-  return { name, board, isTurn, attack };
+  return { name, board, isTurn, attack, randomRow };
 }
 
 function GameController() {}
