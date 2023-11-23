@@ -7,10 +7,6 @@ const modDOM = (function () {
   const board1 = body.querySelector(".board-1");
   const board2 = body.querySelector(".board-2");
 
-  printBoard(game.player1);
-  printComputerBoard(game.player2, game.player1);
-  printBoard(game.player1, modModal.modalCont);
-
   function printBoard(player, location = board1) {
     for (const row in player.board) {
       if (typeof player.board[row] === "object" && row.includes("row"))
@@ -71,5 +67,15 @@ const modDOM = (function () {
     });
   }
 
-  return { printBoard, printComputerBoard, resetBoard };
+  function printBoth() {
+    printBoard(game.player1);
+    printComputerBoard(game.player2, game.player1);
+  }
+
+  return {
+    printBoard,
+    printComputerBoard,
+    resetBoard,
+    printBoth,
+  };
 })();

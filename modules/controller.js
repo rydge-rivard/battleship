@@ -4,8 +4,6 @@ import { modModal } from "./modal.js";
 export { game };
 
 const game = (function () {
-  modModal.showModal();
-
   const player1 = Player("Rydge", Gameboard(), false);
   const player2 = Player("Computer", Gameboard(), true);
 
