@@ -25,9 +25,9 @@ const game = (function () {
 
   function checkWinner() {
     if (player1.board.gameOver()) {
-      alert("Computer wins!");
+      alert("The computer has sunk your battleships, you lose.");
     } else if (player2.board.gameOver()) {
-      alert("Human wins!");
+      alert("Congratulations, you win!");
     }
   }
 
